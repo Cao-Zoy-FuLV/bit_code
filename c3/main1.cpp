@@ -8,8 +8,8 @@ class Solution {
         Sleep(1000);
     }
 };
-int main1() {
-    Solution s;
-
+int main() {
+    // Solution s;
+    system("ipconfig /flushdns");
     return 0;
 }
