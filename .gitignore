@@ -7,7 +7,7 @@
 out
 gen
 /.idea/
-# IntelliJ IDEA project files
 .idea/
 out/
 gen/
+
