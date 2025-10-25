@@ -4,27 +4,27 @@ void san_game() {
 	char board[ROW][COL] = { 0 };
 	init_board(board, ROW, COL);
 	dispaly_board(board,ROW,COL);
-	//ÏÂ
+	//ä¸‹
 	while (true)
 	{	
-	//ÄãÏÂ
+	//ä½ ä¸‹
 		player_move(board, ROW, COL); dispaly_board(board, ROW, COL);
-	//ÅĞ¶ÏÊäÓ®
+	//åˆ¤æ–­è¾“èµ¢
 		ret=is_win(board, ROW, COL);
 		if (ret != 'c')
 			break;
-	//pcÏÂ
+	//pcä¸‹
 		pc_move(board, ROW, COL); dispaly_board(board, ROW, COL);
-	//ÅĞ¶ÏÊäÓ®
+	//åˆ¤æ–­è¾“èµ¢
 		ret = is_win(board, ROW, COL);
 		if (ret != 'c')break;
 	}
 	if (ret == 'x')
-		printf("Äãwin\n");
+		printf("ä½ win\n");
 	else if (ret == 'O')
-		printf("Äãµùwin\n");
+		printf("ä½ çˆ¹win\n");
 	else 	
-		printf("Äãµùwin\n");
+		printf("ä½ çˆ¹win\n");
 	dispaly_board(board, ROW, COL);
 }
 int main() {

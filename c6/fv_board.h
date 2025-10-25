@@ -5,13 +5,13 @@
 void meun();
 #define ROW 3
 #define COL 3
-///³õÊ¼»¯ÆåÅÌ
+///åˆå§‹åŒ–æ£‹ç›˜
 void init_board(char board[ROW][COL], int row, int col);
-//´òÓ¡ÆåÅÌ 
+//æ‰“å°æ£‹ç›˜ 
 void dispaly_board(char board[ROW][COL], int row, int col);
-//Íæ¼ÒÏÂ
+//ç©å®¶ä¸‹
 void player_move(char board[ROW][COL], int row, int col);
-//µçÄÔÏÂ
+//ç”µè„‘ä¸‹
 void pc_move(char board[ROW][COL], int row, int col);
-//ÅĞ¶ÏÊäÓ®
+//åˆ¤æ–­è¾“èµ¢
 char is_win(char board[ROW][COL], int row, int col);
