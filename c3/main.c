@@ -225,8 +225,10 @@ int main2()
 
 int main()
 {
+    //gcc 支持__STDC__
+    // printf("%d",__STDC__);
     // main0();
     // main1();
-    main2();
+    // main2();
 
 }

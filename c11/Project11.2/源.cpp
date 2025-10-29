@@ -1,22 +1,22 @@
 #include<iostream>
 using namespace std;
 
-//¶ş²æÊ÷½á¹¹Ìå
+//äºŒå‰æ ‘ç»“æ„ä½“
 struct TreeNode {
 	string name;
 	TreeNode* left;
 	TreeNode* right;
 };
 
-//ÀûÓÃµİÊµÏÖ¶ş²æÊ÷µÄÏÈĞò±éÀú´òÓ¡Êä³ö
+//åˆ©ç”¨é€’å®ç°äºŒå‰æ ‘çš„å…ˆåºéå†æ‰“å°è¾“å‡º
 void printTreePreOrder(TreeNode* root) {
-	//»ù×¼Çé¿ö£ºÈç¹ûÊÇ¿ÕÊ÷£¬¾ÍÖ±½Ó·µ»Ø
+	//åŸºå‡†æƒ…å†µï¼šå¦‚æœæ˜¯ç©ºæ ‘ï¼Œå°±ç›´æ¥è¿”å›
 	if (root == nullptr) return;
 	
-	//ÏÈ´òÓ¡¸ù½ÚµãµÄÖµ
+	//å…ˆæ‰“å°æ ¹èŠ‚ç‚¹çš„å€¼
 	cout << root->name <<"\t";
 
-	//µİ¹é´òÓ¡×óÓÒ×ÓÊ÷
+	//é€’å½’æ‰“å°å·¦å³å­æ ‘
 	printTreePreOrder(root->left);
 	printTreePreOrder(root->right);
 }

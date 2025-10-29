@@ -2,21 +2,21 @@
 #include<stdio.h>
 #include <time.h>
 #include<stdlib.h>
-//ÆåÅÌ²ÎÊı
+//æ£‹ç›˜å‚æ•°
 #define ROW 9
 #define COL 9
 #define ROWS  ROW+2
 #define COLS  COL+2
-//Ç°Í·
+//å‰å¤´
 void meun();
 void SA_game();
-//³õÊ¼»¯ÆåÅÌ
+//åˆå§‹åŒ–æ£‹ç›˜
 void initial_board(char board[ROWS][COLS], int rows, int cols,char set);
-//´òÓ¡ÆåÅÌ
+//æ‰“å°æ£‹ç›˜
 void display_board(char board[ROWS][COLS], int row, int col);
-//À×ÆÕ
+//é›·æ™®
 void set_mine(char board[ROWS][COLS], int row, int col);
-///¼¸¸öÀ×ÆÕ
+///å‡ ä¸ªé›·æ™®
 #define FV_COUNT 5
-////¾ïÀ×
+////æ’…é›·
 void find_mine(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col);

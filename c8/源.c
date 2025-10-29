@@ -1,15 +1,15 @@
 #include <stdio.h>
 int main1() {
-	//Ö¸ÕëÊý×é
+	//æŒ‡é’ˆæ•°ç»„
 	int arr[4];
 	char* ch[5];
-	//Êý×éÖ¸Õë
+	//æ•°ç»„æŒ‡é’ˆ
 	int arr2[5];
 	int(*pa)[5] = &arr2;
-	//paÀàÐÍ--¡·int(* )[] 
+	//paç±»åž‹--ã€‹int(* )[] 
 	char* arr3[6] = { 0 };
 	char* (*p3)[6] = &arr3;
-	//p3ÊÇ´¢´æÊý×éÖ¸ÕëµÄÊý×é
+	//p3æ˜¯å‚¨å­˜æ•°ç»„æŒ‡é’ˆçš„æ•°ç»„
 	return 0;
 }
 
@@ -20,42 +20,42 @@ int test(const char* str)
 }
 int main2()
 {
-	//º¯ÊýÖ¸Õë-Ò²ÊÇÒ»ÖÖÖ¸Õë£¬ÊÇÖ¸Ïòº¯ÊýµÄÖ¸Õë
+	//å‡½æ•°æŒ‡é’ˆ-ä¹Ÿæ˜¯ä¸€ç§æŒ‡é’ˆï¼Œæ˜¯æŒ‡å‘å‡½æ•°çš„æŒ‡é’ˆ
 	printf("%p\n", test);
 	printf("%p\n", &test);
-	//Í¬Îªº¯ÊýµØÖ·
+	//åŒä¸ºå‡½æ•°åœ°å€
 	int (*pf)(const char*) = test;
-	//pfÀàÐÍ--¡·int (* )(const char*)
-	(*pf)("avb"); test("abc"); pf("abc");//Í¬
+	//pfç±»åž‹--ã€‹int (* )(const char*)
+	(*pf)("avb"); test("abc"); pf("abc");//åŒ
 
-	//	Ó²¼þÐèµ÷ÓÃÊ×µØÖ·Îª 0 Î»ÖÃµÄº¯Êý¡£
+	//	ç¡¬ä»¶éœ€è°ƒç”¨é¦–åœ°å€ä¸º 0 ä½ç½®çš„å‡½æ•°ã€‚
 	//	( *(void (*)() )0 )();
-	//	void £¨* £©()-->º¯ÊýÖ¸ÕëÀàÐÍ
-	//	( )0-->Ç¿ÖÆÀàÐÍ×ª»»==0¸ÄÎªº¯ÊýµØÖ·
-	//	(* )( )-->µ÷ÓÃº¯Êý£¨void:ÎÞ²ÎÊý£©
-	//	²ûÊö:
-	//	 °Ñ 0 Ç¿ÖÆÀàÐÍ×ª»»Îª£ºÎÞ²Î£¬·µ»ØÀàÐÍÊÇ void µÄº¯ÊýµÄµØÖ·
-	//	 µ÷ÓÃ 0 µØÖ·´¦µÄÕâ¸öº¯Êý
+	//	void ï¼ˆ* ï¼‰()-->å‡½æ•°æŒ‡é’ˆç±»åž‹
+	//	( )0-->å¼ºåˆ¶ç±»åž‹è½¬æ¢==0æ”¹ä¸ºå‡½æ•°åœ°å€
+	//	(* )( )-->è°ƒç”¨å‡½æ•°ï¼ˆvoid:æ— å‚æ•°ï¼‰
+	//	é˜è¿°:
+	//	 æŠŠ 0 å¼ºåˆ¶ç±»åž‹è½¬æ¢ä¸ºï¼šæ— å‚ï¼Œè¿”å›žç±»åž‹æ˜¯ void çš„å‡½æ•°çš„åœ°å€
+	//	 è°ƒç”¨ 0 åœ°å€å¤„çš„è¿™ä¸ªå‡½æ•°
 	//
 		//
 		//void (* signal( int, void(*)(int) ) )(int);
-		//signal ÊÇº¯ÊýÃû  
-		//int, void(*)(int) ÊÇ²ÎÊý
-		//²ûÊö:
-		//ÉùÃ÷ signal º¯Êý
-		//µÚÒ»¸ö²ÎÊýµÄÀàÐÍÊÇ int 
-		//µÚ¶þ²ÎÊýµÄÀàÐÍÊÇº¯ÊýÖ¸Õë£¬¸Ãº¯ÊýÖ¸ÕëÖ¸ÏòµÄº¯Êý…¢ÊýÊÇ int,
-		// ·µ»ØÀàÐÍÊÇ void
-		//signal º¯ÊýµÄ·µ»ØÀàÐÍÒ²ÊÇÒ»¸öº¯ÊýÖ¸Õë£¬
-		// ¸Ãº¯Ö¸ÕëÖ¸ÏòµÄº¯Êý²ÎÊýÊÇ int £¬
-		// ·µ»ØÀàÐÍÒ²ÊÇ void
-		// ¼ò»¯£º
-		//typedef void(* pf_t)(int);  °Ñ void(*)(int) ÀàÐÍÖØÃüÃûÎª pf_t
+		//signal æ˜¯å‡½æ•°å  
+		//int, void(*)(int) æ˜¯å‚æ•°
+		//é˜è¿°:
+		//å£°æ˜Ž signal å‡½æ•°
+		//ç¬¬ä¸€ä¸ªå‚æ•°çš„ç±»åž‹æ˜¯ int 
+		//ç¬¬äºŒå‚æ•°çš„ç±»åž‹æ˜¯å‡½æ•°æŒ‡é’ˆï¼Œè¯¥å‡½æ•°æŒ‡é’ˆæŒ‡å‘çš„å‡½æ•°åƒæ•°æ˜¯ int,
+		// è¿”å›žç±»åž‹æ˜¯ void
+		//signal å‡½æ•°çš„è¿”å›žç±»åž‹ä¹Ÿæ˜¯ä¸€ä¸ªå‡½æ•°æŒ‡é’ˆï¼Œ
+		// è¯¥å‡½æŒ‡é’ˆæŒ‡å‘çš„å‡½æ•°å‚æ•°æ˜¯ int ï¼Œ
+		// è¿”å›žç±»åž‹ä¹Ÿæ˜¯ void
+		// ç®€åŒ–ï¼š
+		//typedef void(* pf_t)(int);  æŠŠ void(*)(int) ç±»åž‹é‡å‘½åä¸º pf_t
 		//pf_t signal(int,pf_t);
 	return 0;
 }
 
-//¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¼ÆËãÆ÷(×ªÒÆ±í)¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
+//â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”è®¡ç®—å™¨(è½¬ç§»è¡¨)â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”
 int Add(int x, int y) { return x + y; }
 int Sub(int x, int y) { return x - y; }
 int Mul(int x, int y) { return x * y; }
@@ -72,9 +72,9 @@ void menu()
 }
 int main3() {
 	int input = 0; int x = 0; int y = 0; int ret = 0;
-	//º¯ÊýÖ¸ÕëÊý×é
+	//å‡½æ•°æŒ‡é’ˆæ•°ç»„
 	int (*pf_[5])(int, int) = { 0,Add,Sub,Mul,Div };
-	//Ö¸Ïò¡¼º¯ÊýÖ¸ÕëÊý×é¡½µÄÖ¸Õë
+	//æŒ‡å‘ã€–å‡½æ•°æŒ‡é’ˆæ•°ç»„ã€—çš„æŒ‡é’ˆ
 	//int (*(*pf_)[5])(int, int) = &pf_;
 	do
 	{
@@ -87,7 +87,7 @@ int main3() {
 		}
 		else if (input >= 1 && input <= 4)
 		{
-			printf("ÇëÊäÈë2¸ö²Ù×÷Êý:>");
+			printf("è¯·è¾“å…¥2ä¸ªæ“ä½œæ•°:>");
 			scanf("%d %d", &x, &y);
 			ret = pf_[input](x, y);
 			printf("%d\n", ret);
@@ -101,62 +101,62 @@ int main3() {
 }
 
 
-//¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª»Øµ÷º¯Êý¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
-//»Øµ÷º¯Êý    Í¨¹ýº¯ÊýÖ¸Õëµ÷ÓÃµÄº¯Êý
-//Èç¹û°Ñº¯ÊýµÄÖ¸Õë£¨µØÖ·£©×÷Îª²ÎÊý´«µÝ¸øÁíÒ»¸öº¯Êý, 
-// µ±Õâ¸öÖ¸Õë±»ÓÃÀ´µ÷ÓÃÆäËùÖ¸ÏòµÄº¯ÊýÊ±£¬¾ÍÊÇ»Øµ÷º¯Êý¡£
-//»Øµ÷º¯Êý²»ÊÇÓÉ¸Ãº¯Êý, µÄÊµÏÖ·½Ö±½Óµ÷ÓÃ£¬¶øÊÇÔÚÌØ¶¨µÄÊÂ¼þ»òÌõ¼þ·¢ÉúÊ±ÓÉÁíÍâµÄÒ»·½µ÷ÓÃµÄ£¬
-// ÓÃÓÚ¶Ô¸ÃÊÂ¼þ»òÌõ¼þ½øÐÐÏìÓ¦
+//â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”å›žè°ƒå‡½æ•°â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”
+//å›žè°ƒå‡½æ•°    é€šè¿‡å‡½æ•°æŒ‡é’ˆè°ƒç”¨çš„å‡½æ•°
+//å¦‚æžœæŠŠå‡½æ•°çš„æŒ‡é’ˆï¼ˆåœ°å€ï¼‰ä½œä¸ºå‚æ•°ä¼ é€’ç»™å¦ä¸€ä¸ªå‡½æ•°, 
+// å½“è¿™ä¸ªæŒ‡é’ˆè¢«ç”¨æ¥è°ƒç”¨å…¶æ‰€æŒ‡å‘çš„å‡½æ•°æ—¶ï¼Œå°±æ˜¯å›žè°ƒå‡½æ•°ã€‚
+//å›žè°ƒå‡½æ•°ä¸æ˜¯ç”±è¯¥å‡½æ•°, çš„å®žçŽ°æ–¹ç›´æŽ¥è°ƒç”¨ï¼Œè€Œæ˜¯åœ¨ç‰¹å®šçš„äº‹ä»¶æˆ–æ¡ä»¶å‘ç”Ÿæ—¶ç”±å¦å¤–çš„ä¸€æ–¹è°ƒç”¨çš„ï¼Œ
+// ç”¨äºŽå¯¹è¯¥äº‹ä»¶æˆ–æ¡ä»¶è¿›è¡Œå“åº”
 //
 
 #include <string.h>
 #include <stdlib.h>
 
-//qsort º¯Êý  -¿ÉÒÔÅÅÐòÈÎÒâÀàÐÍµÄÊý¾Ý
-//void qsort (void* base, //½«ÒªÅÅÐòÊý¾ÝµÄÆðÊ¼Î»ÖÃ
-//			size_t num, //´ýÅÅÐòµÄÊý¾ÝÔªËØµÄ¸öÊý
-//			size_t width, //´ýÅÅÐòµÄÊý¾ÝÔªËØµÄ´óÐ¡(µ¥Î»ÊÇ×Ö½Ú)
-//			int(* cmp)(const void* el,const void* e2));//º¯ÊýÖ¸Õë-±È½Ïº¯Êý e1 ºÍ e2 ´ý±È½ÏµÄ2Êý
+//qsort å‡½æ•°  -å¯ä»¥æŽ’åºä»»æ„ç±»åž‹çš„æ•°æ®
+//void qsort (void* base, //å°†è¦æŽ’åºæ•°æ®çš„èµ·å§‹ä½ç½®
+//			size_t num, //å¾…æŽ’åºçš„æ•°æ®å…ƒç´ çš„ä¸ªæ•°
+//			size_t width, //å¾…æŽ’åºçš„æ•°æ®å…ƒç´ çš„å¤§å°(å•ä½æ˜¯å­—èŠ‚)
+//			int(* cmp)(const void* el,const void* e2));//å‡½æ•°æŒ‡é’ˆ-æ¯”è¾ƒå‡½æ•° e1 å’Œ e2 å¾…æ¯”è¾ƒçš„2æ•°
 
-// void* ÊÇÎÞ¾ßÌåÀàÐÍµÄÖ¸Õë£¬¿ÉÒÔ½ÓÊÜÈÎÒâÀàÐÍµÄµØÖ·
-//	ËùÒÔ²»ÄÜ½âÒýÓÃ²Ù×÷£¬Ò²²»ÄÜ+-ÕûÊý
+// void* æ˜¯æ— å…·ä½“ç±»åž‹çš„æŒ‡é’ˆï¼Œå¯ä»¥æŽ¥å—ä»»æ„ç±»åž‹çš„åœ°å€
+//	æ‰€ä»¥ä¸èƒ½è§£å¼•ç”¨æ“ä½œï¼Œä¹Ÿä¸èƒ½+-æ•´æ•°
 
-//ÅÅÐòÕûÐÍÊý¾Ý
+//æŽ’åºæ•´åž‹æ•°æ®
 int cmp_int(const void* e1, const void* e2)
 {
-	// ±È½Ï 2 ¸öÕûÐÍÔªËØ 
-	// e1Ö¸ÏòÒ»¸öÕûÊý  e2 Ö¸ÏòÁíÒ»¸öÕûÊý
-	return (*(int*)e1 - *(int*)e2);//ÉýÐò
-	//return (*(int*)e2 - *(int*)e1);//½µÐò
+	// æ¯”è¾ƒ 2 ä¸ªæ•´åž‹å…ƒç´  
+	// e1æŒ‡å‘ä¸€ä¸ªæ•´æ•°  e2 æŒ‡å‘å¦ä¸€ä¸ªæ•´æ•°
+	return (*(int*)e1 - *(int*)e2);//å‡åº
+	//return (*(int*)e2 - *(int*)e1);//é™åº
 }
-//²âÊÔÊ¹ÓÃ qsort À´ÅÅÐòÕûÐÍÊý¾Ý
+//æµ‹è¯•ä½¿ç”¨ qsort æ¥æŽ’åºæ•´åž‹æ•°æ®
 void test1()
 {
 	int arr[] = { 0,1,2,3,4,5,6,7,8,9,9,10,8,7,6,5,4,3,2,1,0 };
 	int sz = sizeof(arr) / sizeof(arr[0]);
 	qsort(arr, sz, sizeof(arr[0]), cmp_int);
-	//qsort ÔÚÄÚ²¿º¯Êýµ÷ÓÃÁËcmp__int
+	//qsort åœ¨å†…éƒ¨å‡½æ•°è°ƒç”¨äº†cmp__int
 	for (size_t i = 0; i < sz; i++)
 		printf("%d ", arr[i]);
 }
-//²âÊÔÊ¹ÓÃ qsort À´ÅÅÐò½á¹¹Êý¾Ý
+//æµ‹è¯•ä½¿ç”¨ qsort æ¥æŽ’åºç»“æž„æ•°æ®
 
 struct Stu
 {
 	char name[20];
 	int age;
 };
-//±È½ÏÃû×Ö
+//æ¯”è¾ƒåå­—
 int cmp_stu_by_name(const void* e1, const void* e2)
-{	//strcmp  ·µ»Ø>0, ==0, <0 
+{	//strcmp  è¿”å›ž>0, ==0, <0 
 	return strcmp(((struct Stu*)e1)->name, ((struct Stu*)e2)->name);
 }
-//±È½ÏÄêÁã
+//æ¯”è¾ƒå¹´é›¶
 int cmp_stu_by_age(const void* e1, const void* e2)
 {
 	return ((struct Stu*)e1)->age - ((struct Stu*)e2)->age;
 }
-//Ê¹ÓÃ qsort À´ÅÅÐò½á¹¹Êý¾Ý
+//ä½¿ç”¨ qsort æ¥æŽ’åºç»“æž„æ•°æ®
 void test2()
 {
 	struct Stu s[] =
@@ -175,9 +175,9 @@ int main4() {
 	return 0;
 }
 
-//¡ª¡ª¡ª¡ª>>>>>>>Ã°ÅÝÅÅÐò
+//â€”â€”â€”â€”>>>>>>>å†’æ³¡æŽ’åº
 
-//½»»»
+//äº¤æ¢
 void Swap(char* buf1, char* buf2, int width)
 {
 	for (size_t i = 0; i < width; i++)
@@ -193,15 +193,15 @@ void bubble_sort(void* bass, int sz, int width, int(*cmp)(const void* el, const 
 	int i = 0;
 	for (i = 0; i < sz - 1; i++)
 	{
-		int flag = 1;//¼ÙÉèÊý×éÊÇÅÅºÃ
+		int flag = 1;//å‡è®¾æ•°ç»„æ˜¯æŽ’å¥½
 		int j = 0;
-		for (j = 0; j < sz - 1 - i; j++)/*Ò»ÌË*/
+		for (j = 0; j < sz - 1 - i; j++)/*ä¸€è¶Ÿ*/
 		{
-			//cmp e1 ºÍ e2 ´ý±È½ÏµÄ2ÊýµØÖ·
+			//cmp e1 å’Œ e2 å¾…æ¯”è¾ƒçš„2æ•°åœ°å€
 			if (cmp((char*)bass + j * width, (char*)bass + (j + 1) * width) > 0)
-			{   //´«µØÖ·*Êý¾ÝµÄ¿í¶È=ÈÎÒâ¿í¶È½»»»
+			{   //ä¼ åœ°å€*æ•°æ®çš„å®½åº¦=ä»»æ„å®½åº¦äº¤æ¢
 				Swap((char*)bass + j * width, (char*)bass + (j + 1) * width, width);
-				flag = 0;//¼ÆÈë
+				flag = 0;//è®¡å…¥
 			}
 		}
 		if (flag == 1)
@@ -234,10 +234,10 @@ int main6() {
 	return 0;
 }
 
-//¡ª¡ª¡ª¡ªÏ£¶ûÅÅÐòËã·¨
-//²½Öè1 ¹¹ÔìÒ»¸ö²½³¤ÐòÁÐ delta1,delta2...deltak, ÆäÖÐ delta =n/2, ºóÃæµÄÃ¿¸ö delta ÊÇÇ°Ò»¸öµÄ 1/2 deltak=l 
-//²½Öè2 ¸ù¾Ý²½³¤ÐòÁÐ¡¢½øÐÐ k ÌËÅÅÐò
-//²½Öè3 ¶ÔµÚ i ÌËÅÅÐò£¬¸ù¾Ý¶ÔÓ¦µÄ²½³¤ delta ,½«µÈ²½³¤Î»ÖÃÔªËØ·Ö×é£¬¶ÔÍ¬Ò»×éÄÚÔªËØÔÚÔ­Î»ÖÃÉÏ½øÐÐÖ±½Ó²åÈëÅÅÐò¡£
+//â€”â€”â€”â€”å¸Œå°”æŽ’åºç®—æ³•
+//æ­¥éª¤1 æž„é€ ä¸€ä¸ªæ­¥é•¿åºåˆ— delta1,delta2...deltak, å…¶ä¸­ delta =n/2, åŽé¢çš„æ¯ä¸ª delta æ˜¯å‰ä¸€ä¸ªçš„ 1/2 deltak=l 
+//æ­¥éª¤2 æ ¹æ®æ­¥é•¿åºåˆ—ã€è¿›è¡Œ k è¶ŸæŽ’åº
+//æ­¥éª¤3 å¯¹ç¬¬ i è¶ŸæŽ’åºï¼Œæ ¹æ®å¯¹åº”çš„æ­¥é•¿ delta ,å°†ç­‰æ­¥é•¿ä½ç½®å…ƒç´ åˆ†ç»„ï¼Œå¯¹åŒä¸€ç»„å†…å…ƒç´ åœ¨åŽŸä½ç½®ä¸Šè¿›è¡Œç›´æŽ¥æ’å…¥æŽ’åºã€‚
 void shellsort(int data[], int n)
 {
 	int* delta, k, i, t, dk, j;

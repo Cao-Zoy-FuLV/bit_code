@@ -1,22 +1,22 @@
 #include "saLEI.h"
 void SA_game() {
-	char mine[ROWS][COLS] = { 0 };//´æ´¢²¼ÖÃºÃµÄÀ×µÄĞÅÏ¢
-	char show[ROWS][COLS] = { 0 };//´¢´æÅÅ²é³öµÄÀ×µÄĞÅÏ¢
-	//³õÊ¼»°Êı×éµÄÄÚÈİÎªÖ¸¶¨ÔªËØ
-	initial_board(mine,ROWS,COLS,'0');//Ã»À×==0
-	initial_board(show, ROWS, COLS,'$');//Ã»²çÀ×==$	
-    //À×ÆÕ
+	char mine[ROWS][COLS] = { 0 };//å­˜å‚¨å¸ƒç½®å¥½çš„é›·çš„ä¿¡æ¯
+	char show[ROWS][COLS] = { 0 };//å‚¨å­˜æ’æŸ¥å‡ºçš„é›·çš„ä¿¡æ¯
+	//åˆå§‹è¯æ•°ç»„çš„å†…å®¹ä¸ºæŒ‡å®šå…ƒç´ 
+	initial_board(mine,ROWS,COLS,'0');//æ²¡é›·==0
+	initial_board(show, ROWS, COLS,'$');//æ²¡èŒ¬é›·==$	
+    //é›·æ™®
 	set_mine(mine, ROW, COL);
-	//¿ª¹Ò
+	//å¼€æŒ‚
 	display_board(mine, ROW, COL);
-	//»ù±¾ÅÌ
+	//åŸºæœ¬ç›˜
 	display_board(show, ROW, COL);
-	//¾ïÀ×
+	//æ’…é›·
 	find_mine(mine, show, ROW, COL);
 }
 int main() {
 	int input = 0;
-	//ÉèÖÃËæ»úÊıÉú³É
+	//è®¾ç½®éšæœºæ•°ç”Ÿæˆ
 	do
 	{
 		srand((unsigned int)time(NULL));
@@ -26,14 +26,14 @@ int main() {
 		switch (input)
 		{
 		case 1:
-			printf("¡ª¡ª¡ª¡ªsaLEI¡ª¡ª¡ª¡ª¡ª\n");
+			printf("â€”â€”â€”â€”saLEIâ€”â€”â€”â€”â€”\n");
 			SA_game();
 			break;
 		case 0: 
-			printf("¡ª¡ª¡ª¡ªunsaLEI¡ª¡ª¡ª¡ª\n");
+			printf("â€”â€”â€”â€”unsaLEIâ€”â€”â€”â€”\n");
 			break;
 		default:
-			printf("ÉµÄñ\n");
+			printf("å‚»é¸Ÿ\n");
 			break;			
 		}
 	} while (input);
