@@ -274,7 +274,7 @@ char* my_strcpy(char* dest, const char* src)
 	char* ret = dest;
 	//断言
 	assert(src != NULL); assert(dest != NULL);
-	while (*dest++ = *src++);
+	while ((*dest++ = *src++));
 	return ret;
 }
 int main14() {
