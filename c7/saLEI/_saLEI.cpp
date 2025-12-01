@@ -1,4 +1,4 @@
-#include "saLEI.h"
+#include "../saLEI.h"
 //前头
 void meun() {
 	printf("————————————————————\n");

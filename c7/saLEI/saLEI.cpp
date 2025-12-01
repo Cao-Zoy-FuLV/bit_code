@@ -1,4 +1,4 @@
-#include "saLEI.h"
+#include "../saLEI.h"
 void SA_game() {
 	char mine[ROWS][COLS] = { 0 };//存储布置好的雷的信息
 	char show[ROWS][COLS] = { 0 };//储存排查出的雷的信息
