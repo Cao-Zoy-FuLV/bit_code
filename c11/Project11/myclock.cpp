@@ -13,8 +13,8 @@ void myclock::run()
 {
 	while (true)
 	{
-		show();//显示
-		tick();//数据更新
+		show();//鏄剧ず
+		tick();//鏁版嵁鏇存柊
 	}
 }
 

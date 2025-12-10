@@ -245,6 +245,7 @@ int main2()
     }
     return 0;
 }
+
 struct sssb
 {
     int a;
@@ -255,7 +256,7 @@ typedef struct sssb Sb;
 
 void INn()
 {
-    Sb sb ;
+    Sb sb;
     sb.a = 1;
     printf("%d", sb.a);
 }
@@ -264,15 +265,17 @@ typedef Sb sssb;
 
 void INn2()
 {
-    sssb sb ;
+    sssb sb;
     sb.a = 2;
     printf("%d", sb.a);
 }
+
 void main3()
 {
     INn();
     INn2();
 }
+
 int main()
 {
     // Stu_main();
@@ -281,6 +284,6 @@ int main()
     // main0();
     // main1();
     // main2();
-    main3();
+    // main3();
     // Sleep(10000);
 }
