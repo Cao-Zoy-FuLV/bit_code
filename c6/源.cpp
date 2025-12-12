@@ -17,7 +17,8 @@ int main1() {
 	printf("有几行= %d  48/16=>3\n", sizeof(arrr)/sizeof(arrr[0]));//
 	printf("有几列= %d  16/4 =>4\n", sizeof(arrr[0]) / sizeof(arrr[0][0]));//
 return 0; }
-// ————————————————————————————————
+// ————————————————————————————————二维数组=一维数组的数组（在内存中连续存放）
+
 int main2() {
 	int arr[3][4] = { 1,2,3,4,2,3,4,5,3,4,5,6 }; int i = 0;
 	for ( i = 0; i < 3; i++){
@@ -27,7 +28,6 @@ int main2() {
 		for (int j = 0; j < 4; j++){
 			printf("&arr[%d][%d] = %p\n",i,j, &arr[i][j]);}}	
 	return 0;} 	
-二维数组=一维数组的数组（在内存中连续存放）
 
 //——————————————冒泡排序——————————————
 void bubble_sort(int arr[], int sz) 
@@ -62,3 +62,4 @@ int main3() {
 	}
 	return 0;
 }
+
