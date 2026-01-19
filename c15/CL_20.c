@@ -79,6 +79,11 @@ int ST_size(ST* pst)
     return pst->top;
 }
 
+
+//以上复制 stack 的
+
+
+
 bool isValid(char* s)
 {
     ST St;
