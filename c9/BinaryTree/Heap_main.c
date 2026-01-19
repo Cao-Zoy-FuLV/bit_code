@@ -237,6 +237,29 @@ bool isUnivalTree(BTNode* root)
         (root->right == NULL || root->right->data == root->data);
 }
 
+BTNode* Find(BTNode* root, int x)
+{
+    if (root == NULL)
+    {
+        return NULL;
+    }
+    if (root->data == x)
+    {
+        return root;
+    }
+    BTNode* left = Find(root->left, x);
+    if (left)
+    {
+        return left;
+    }
+    BTNode* right = Find(root->right, x);
+    if (right)
+    {
+        return right;
+    }
+    return NULL;
+}
+
 int main()
 {
     BTNode* root = BT_Create();
