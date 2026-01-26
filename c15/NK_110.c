@@ -44,7 +44,7 @@ void InOrder(TreeNode* root)
     putchar(' ');
     InOrder(root->right);
 }
-int main() {
+int main0() {
     char pre[10];
     scanf("%s", pre);
     int index = 0;

@@ -5,7 +5,7 @@
 
 
 #include "Stack.c"
-int main() {
+int main0() {
 
     ST s;
     ST_init(&s);

@@ -41,7 +41,7 @@ bool isSymmetric(struct TreeNode* root)
 }
 
 
-int main() {
+int main0() {
 
     return 0;
 }

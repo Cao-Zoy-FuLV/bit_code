@@ -122,7 +122,7 @@ bool isValid(char* s)
     return r;
 }
 
-int main() {
+int main0() {
 
     printf("%s\n",isValid("()")?"true":"False");
     printf("%s\n",isValid("()[]{}")?"true":"False");

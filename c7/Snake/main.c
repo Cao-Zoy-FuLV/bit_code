@@ -39,7 +39,7 @@ void test()
 
 }
 
-int main()
+int main0()
 {
     //设置本地化环境以支持中文显示
     setlocale(LC_ALL, "");

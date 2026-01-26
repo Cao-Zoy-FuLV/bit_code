@@ -5,7 +5,7 @@
 
 #include <stdlib.h>
 
-int main()
+int main0()
 {
     system("chcp 65001");
     return 0;

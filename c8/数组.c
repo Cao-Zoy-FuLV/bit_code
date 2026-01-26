@@ -577,7 +577,7 @@ void heapSort(int R[10], int n)
 		heapify(R, 1, i - 1);
 	}
 }
-int main() {
+int main0() {
 	int R[] = { 1,10,13,15,4,20,19,8 };
 	int n = 8;
 	heapSort(R, n);

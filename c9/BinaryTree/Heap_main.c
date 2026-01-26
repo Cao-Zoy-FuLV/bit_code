@@ -28,14 +28,14 @@ void HeapSort(int a[], int n)
     //向上调整 O(n)
     for (int i = (n - 1) / 2; i >= 0; --i)
     {
-        AdjustDown(a, n, i);
+        AdjustDwon(a, n, i);
     }
 
     int end = n - 1;
     while (end > 0)
     {
         Swap(&a[0], &a[end]);
-        AdjustDown(a, end, 0);
+        AdjustDwon(a, end, 0);
         --end;
     }
 }
@@ -94,7 +94,7 @@ void topK()
     //创建k堆
     for (int i = (k - 2) / 2; i >= 0; i--)
     {
-        AdjustDown(kminheap, k, i);
+        AdjustDwon(kminheap, k, i);
     }
     //读取剩下的N-k个数
     int x = 0;
@@ -103,7 +103,7 @@ void topK()
         if (x > kminheap[0])
         {
             kminheap[0] = x;
-            AdjustDown(kminheap, k, 0);
+            AdjustDwon(kminheap, k, 0);
         }
     }
     //输出"最大的前k个"
@@ -260,16 +260,98 @@ BTNode* Find(BTNode* root, int x)
     return NULL;
 }
 
-int main()
+//层序遍历 BFS（广度优先搜索）
+#include "Queue.c"
+
+void LevelOrder(BTNode* root)
+{
+    Queue q;
+    Queue_init(&q);
+    if (root)
+    {
+        Queue_push(&q, root);
+    }
+    while (!Queue_empty(&q))
+    {
+        BTNode* node = Queue_front(&q);
+        printf("%d ", node->data);
+        Queue_pop(&q);
+        if (node->left)
+        {
+            Queue_push(&q, node->left);
+        }
+        if (node->right)
+        {
+            Queue_push(&q, node->right);
+        }
+    }
+    Queue_destroy(&q);
+}
+
+// 判断二叉树是否是完全二叉树
+bool BinaryTreeComplete(BTNode* root)
+{
+    Queue q;
+    Queue_init(&q);
+    if (root)
+    {
+        Queue_push(&q, root);
+    }
+    while (!Queue_empty(&q))
+    {
+        BTNode* node = Queue_front(&q);
+        Queue_pop(&q);
+        if (node == NULL)
+        {
+           break;
+        }
+        Queue_push(&q, node->left);
+        Queue_push(&q, node->right);
+    }
+    while (!Queue_empty(&q))
+    {
+        BTNode* node = Queue_front(&q);
+        if (node)
+        {
+            printf("不是完全二叉树\n");
+            return 0;
+        }
+        Queue_pop(&q);
+    }
+    Queue_destroy(&q);
+    return true ;
+}
+
+// 二叉树销毁
+void BinaryTreeDestory(BTNode** root)
+{
+    if (*root == NULL)
+    {
+        return;
+    }
+    BinaryTreeDestory(&(*root)->left);
+    BinaryTreeDestory(&(*root)->right);
+    free(*root);
+    *root = NULL;
+}
+
+
+int main0()
 {
     BTNode* root = BT_Create();
+    printf("前序遍历:");
     PrevOrder(root);
     printf("\n中序遍历:");
     InOrder(root);
-    printf("\n");
-    printf("树节点个数: %d\n", TreeSize(root));
+    printf("\n层序遍历:");
+    LevelOrder(root);
+    printf("\n树节点个数: %d\n", TreeSize(root));
     printf("树叶子节点个数: %d\n", TreeLeafSize(root));
     printf("树高度: %d\n", TreeHeight(root));
-    printf("第k层: %d\n", TreeLevel(root, 4));
+    int k = 4;
+    printf("第%d层: %d\n", k, TreeLevel(root, k));
+    printf("单值二叉树: %d\n", isUnivalTree(root));
+    printf("查找节点: %d\n", Find(root, 5)->data);
+    printf("是否是完全二叉树: ");BinaryTreeComplete(root);
     return 0;
 }

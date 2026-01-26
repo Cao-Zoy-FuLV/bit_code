@@ -159,7 +159,7 @@ void myQueueFree(MyQueue* obj)
     free(obj);
 }
 
-int main()
+int main0()
 {
     MyQueue* obj = myQueueCreate();
     myQueuePush(obj, 1);

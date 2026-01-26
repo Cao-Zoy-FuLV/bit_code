@@ -67,7 +67,7 @@ void HP_Push(HP* php, HPDataType x)
  *2删除掉末尾的元素
  *3对比当前元素和父节点大小，继续向上调整
  */
-void AdjustDown(HPDataType* a, int n, int parent)
+void AdjustDwon(HPDataType* a, int n, int parent)
 {
     //设左孩子中较小
     int child = parent * 2 + 1;
@@ -103,7 +103,7 @@ void HP_Pop(HP* php)
     Swap(&php->a[0], &php->a[php->size - 1]);
     php->size--;
 
-    AdjustDown(php->a, php->size, 0);
+    AdjustDwon(php->a, php->size, 0);
 }
 
 HPDataType HP_Top(HP* php)

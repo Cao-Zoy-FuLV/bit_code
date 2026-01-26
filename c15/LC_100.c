@@ -34,7 +34,7 @@ bool isSameTree(struct TreeNode* root, struct TreeNode* subRoot)
             isSameTree(root->right, subRoot->right);
 }
 
-int main()
+int main0()
 {
     return 0;
 }

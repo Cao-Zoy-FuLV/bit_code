@@ -51,7 +51,7 @@ bool isSubtree(struct TreeNode* root, struct TreeNode* subRoot)
         || isSubtree(root->right, subRoot);
 }
 
-int main()
+int main0()
 {
     return 0;
 }

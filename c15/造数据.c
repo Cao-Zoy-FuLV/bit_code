@@ -31,7 +31,7 @@ int 造数据()
 }
 
 
-int main()
+int main0()
 {
     造数据();
     return 0;
