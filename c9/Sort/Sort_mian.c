@@ -13,7 +13,7 @@
 
 #include "Sort.c"
 
-// æµ‹è¯•æ’åºçš„æ€§èƒ½å¯¹æ¯”
+// ²âÊÔÅÅĞòµÄĞÔÄÜ¶Ô±È
 void TestOP()
 {
     srand(time(0));
@@ -25,6 +25,7 @@ void TestOP()
     int* a5 = (int*)malloc(sizeof(int) * N);
     int* a6 = (int*)malloc(sizeof(int) * N);
     int* a7 = (int*)malloc(sizeof(int) * N);
+    int* a8 = (int*)malloc(sizeof(int) * N);
 
     for (int i = 0; i < N; ++i)
     {
@@ -35,6 +36,7 @@ void TestOP()
         a5[i] = a1[i];
         a6[i] = a1[i];
         a7[i] = a1[i];
+        a8[i] = a1[i];
     }
 
     clock_t begin1 = clock();
@@ -65,13 +67,18 @@ void TestOP()
     MergeSort(a6, N);
     clock_t end6 = clock();
 
-    printf("å†’æ³¡æ’åº BubbleSort: %.4f\n", (double)(end7 - begin7) / 1000);
-    printf("æ’å…¥æ’åº InsertSort: %.4f\n", (double)(end1 - begin1) / 1000);
-    printf("å¸Œå°”æ’åº ShellSort:  %.4f\n", (double)(end2 - begin2) / 1000);
-    printf("é€‰æ‹©æ’åº SelectSort: %.4f\n", (double)(end3 - begin3) / 1000);
-    printf("å †æ’åº   HeapSortï¼š  %.4f\n", (double)(end4 - begin4) / 1000);
-    printf("å¿«é€Ÿæ’åº QuickSort:  %.4f\n", (double)(end5 - begin5) / 1000);
-    printf("å½’å¹¶æ’åº MergeSort:  %.4f\n", (double)(end6 - begin6) / 1000);
+    clock_t begin8 = clock();
+    CountSort(a8, N);
+    clock_t end8 = clock();
+
+    printf("Ã°ÅİÅÅĞò BubbleSort:   %.4f\n", (double)(end7 - begin7) / 1000);
+    printf("²åÈëÅÅĞò InsertSort:     %.4f\n", (double)(end1 - begin1) / 1000);
+    printf("Ï£¶ûÅÅĞò ShellSort:      %.4f\n", (double)(end2 - begin2) / 1000);
+    printf("Ñ¡ÔñÅÅĞò SelectSort:    %.4f\n", (double)(end3 - begin3) / 1000);
+    printf("¶ÑÅÅĞò     HeapSort£º  %.4f\n", (double)(end4 - begin4) / 1000);
+    printf("¿ìËÙÅÅĞò QuickSort:    %.4f\n", (double)(end5 - begin5) / 1000);
+    printf("¹é²¢ÅÅĞò MergeSort:   %.4f\n", (double)(end6 - begin6) / 1000);
+    printf("¼ÆÊıÅÅĞò CountSort:    %.4f\n", (double)(end8 - begin8) / 1000);
     free(a1);
     free(a2);
     free(a3);
@@ -79,6 +86,7 @@ void TestOP()
     free(a5);
     free(a6);
     free(a7);
+    free(a8);
 }
 
 void main0()
@@ -105,11 +113,11 @@ void main0()
     PrintArray(a1, sizeof(a1) / sizeof(int));
     CountSort(a1, sizeof(a1) / sizeof(int));
     PrintArray(a1, sizeof(a1) / sizeof(int));
-}
+ }
 
 int main()
 {
-    main0();
-    // TestOP();
+    // main0();
+    TestOP();
     return 0;
 }

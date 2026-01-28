@@ -497,7 +497,7 @@ void CountSort(int* a, int n)
     {
         while (countArr[i]--)
         {
-            a[j++] = i + min;
+            a[j++] = i + min;;
         }
     }
     free(countArr);

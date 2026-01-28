@@ -41,9 +41,10 @@ void QuickSortPit(int* a, int left, int right);
 int QuickSortFroBackPointSingle(int* a, int left, int right);
 void QuickSortFroBackPoint(int* a, int left, int right);
 
-// 归并排序递归实现
+// 归并排序递归实现 时间复杂度O(nlogn)
 void MergeSort(int* a, int n);
 // 归并排序非递归实现
 void MergeSortNonR(int* a, int n);
-// 计数排序
+// 计数排序 时间复杂度O(n)
+//  只适合整数数据 数据范围不大
 void CountSort(int* a, int n);
