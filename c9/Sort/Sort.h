@@ -15,23 +15,23 @@ void PrintArray(int* a, int n);
 
 // 排序实现的接口
 
-// 插入排序 时间复杂度O(n^2)
+// 插入排序 时间复杂度O(n^2) 空间复杂度O(1)  稳定性：稳定
 void InsertSort(int* a, int n);
-// 希尔排序 时间复杂度O(n^1.3)
+// 希尔排序 时间复杂度O(n^1.3) 空间复杂度O(1) 稳定性：不稳定
 void ShellSort(int* a, int n);
-// 选择排序 时间复杂度O(n^2)
+// 选择排序 时间复杂度O(n^2) 空间复杂度O(1) 稳定性：不稳定
 void SelectSort(int* a, int n);
 
 // 堆排序
-// 时间复杂度O(nlogn)
+// 时间复杂度O(nlogn) 空间复杂度O(1) 稳定性：不稳定
 // 大堆升序 小堆降序
 void AdjustDwon(int* a, int n, int root);
 void HeapSort(int* a, int n);
 
-// 冒泡排序 时间复杂度O(n^2)
+// 冒泡排序 时间复杂度O(n^2) 空间复杂度O(1) 稳定性：稳定
 void BubbleSort(int* a, int n);
 
-// 快速排序 递归实现 时间复杂度O(nlogn)
+// 快速排序 递归实现 时间复杂度O(nlogn) 空间复杂度O(logn) 稳定性：不稳定
 void QuickSort(int* a, int left, int right);
 // 快速排序 非递归实现
 void QuickSortNonR(int* a, int left, int right);
@@ -41,7 +41,7 @@ void QuickSortPit(int* a, int left, int right);
 int QuickSortFroBackPointSingle(int* a, int left, int right);
 void QuickSortFroBackPoint(int* a, int left, int right);
 
-// 归并排序递归实现 时间复杂度O(nlogn)
+// 归并排序递归实现 时间复杂度O(nlogn) 空间复杂度O(n) 稳定性：稳定
 void MergeSort(int* a, int n);
 // 归并排序非递归实现
 void MergeSortNonR(int* a, int n);
