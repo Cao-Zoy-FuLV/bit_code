@@ -103,7 +103,7 @@ void main0()
 
     int a1[] = {5, 2, 3, 6, 1, 4};
     PrintArray(a1, sizeof(a1) / sizeof(int));
-    MergeSortNonR(a1, sizeof(a1) / sizeof(int));
+    CountSort(a1, sizeof(a1) / sizeof(int));
     PrintArray(a1, sizeof(a1) / sizeof(int));
 }
 
