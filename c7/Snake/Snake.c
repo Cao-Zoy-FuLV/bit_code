@@ -91,6 +91,7 @@ void InitSnake(pSnake ps)
         cur = cur->next;
     }
     //设置蛇的属性
+
     ps->_dir = RIGHT; //默认向右移动
     ps->_food_weight = 10; //单食物分数
     ps->_score = 0; //总分
