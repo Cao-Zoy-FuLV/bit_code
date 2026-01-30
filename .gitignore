@@ -12,3 +12,5 @@ out/
 gen/
 idea/
 *.exe
+*.vs
+cmake-build-debug/
