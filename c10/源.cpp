@@ -47,7 +47,14 @@ int main4() {
 	cout << a << " " << b << endl;
 	return 0;
 }
-
+int main4_1() {
+	// 在io需求比较高的地方，如部分大量输入的竞赛题中，加上以下3行代码
+	// 可以提高C++IO效率
+	ios_base::sync_with_stdio(false);
+	cin.tie(nullptr);
+	cout.tie(nullptr);
+	return 0;
+}
 
 
 
