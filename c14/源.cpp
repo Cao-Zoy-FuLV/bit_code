@@ -17,6 +17,7 @@ int main(){
     {
         output << line << endl;
     }
-    
+
+
 	return 0;
 }
