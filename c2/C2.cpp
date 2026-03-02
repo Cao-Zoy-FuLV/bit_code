@@ -264,7 +264,7 @@ void merge(vector<int>& nums1, int m, vector<int>& nums2, int n)
             }
         }
     }*/
-    int l1 =m - 1;
+    int l1 = m - 1;
     int l2 = n - 1;
     int l3 = m + n - 1;
     while (l1 >= 0 && l2 >= 0)
@@ -276,17 +276,15 @@ void merge(vector<int>& nums1, int m, vector<int>& nums2, int n)
         else
         {
             nums1[l3--] = nums1[l1--];
-
         }
     }
     //除了循环有两种情况： l1 >= 0 或者 l2 >= 0
     //只需处理 l2 < 0 的情况 (l2还没完全放入 nums1 )
     while (l2 >= 0)
     {
-        nums1[l3--]=nums2[l2--];
+        nums1[l3--] = nums2[l2--];
     }
     //此时nums1包含了nums2中的数据
-
 }
 
 int main()
@@ -352,10 +350,10 @@ int main()
         cout << nums10[i] << " ";
     }
     cout << "\n";
- #endif
+#endif
     cout << "实例8 ";
-    vector<int> nums12 = {1,2,4,5,6,0};
-    vector<int> nums13= {3};
+    vector<int> nums12 = {1, 2, 4, 5, 6, 0};
+    vector<int> nums13 = {3};
     merge(nums12, 5, nums13, 1);
     for (int i = 0; i < nums12.size(); i++)
     {

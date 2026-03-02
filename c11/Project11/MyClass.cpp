@@ -1,4 +1,4 @@
-#include "ÉùÃ÷.h"
+#include "MyClass.h"
 void MyClass::print()//ÐÐÎª
 {
 	cout << "year:" << "month:" << "day" << endl;

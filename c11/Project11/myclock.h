@@ -1,8 +1,7 @@
 #pragma once
 #include <iostream>
 #include <iomanip>
-#include <windows.h>
-using namespace std; 
+
 class myclock
 {
 public:
