@@ -42,3 +42,23 @@ int mainf()
 	M.select(4);
 	return 0;
 }
+
+class A {
+public:
+	void f() { cout << "A::f()" << endl; }
+};
+
+typedef  void(A::*PF)();
+
+int main(int argc, char* argv[])
+{
+	// void (A::*pf)() = nullptr
+	PF pf =nullptr;
+
+	//C++规定成员函数必须加&才能取到函数指针
+	pf=&A::f;
+
+	A aa;
+	(aa.*pf)();
+	//   [ .* ] 运算符在函数回调中使用 ，实际少用
+}

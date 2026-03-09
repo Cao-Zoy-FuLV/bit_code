@@ -1,5 +1,7 @@
 #include "this_zz.h"
 
+
+
 void this_zz::display()
 {
 	cout << age << " Ëê " << str1 << " " << str2 << endl;

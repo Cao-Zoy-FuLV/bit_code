@@ -30,8 +30,8 @@ String::String(const String& another)//拷贝构造器
 	strcpy(_s, another._s);
 }
 
-
-String& String::operator=(const String& another)//赋值运算符重载 ‘=’
+//赋值运算符重载 ‘=’
+String& String::operator=(const String& another)
 {
 	if (this == &another)
 		return*this;
@@ -39,7 +39,7 @@ String& String::operator=(const String& another)//赋值运算符重载 ‘=’
 	int len = strlen(another._s);
 	this->_s = new char[len + 1];
 	strcpy(this->_s, another._s);
-	return *this;
+	return *this;//返回值this 经典用法
 }
 
 String String::operator+(const String& another)
