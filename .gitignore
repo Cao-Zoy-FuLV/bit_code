@@ -12,5 +12,13 @@ out/
 gen/
 idea/
 *.exe
+*.ilk
+*.obj
+*.pch
+*.pdb
+*.dylib
+*.o
+*.so
+*.dll
 *.vs
 cmake-build-debug/
