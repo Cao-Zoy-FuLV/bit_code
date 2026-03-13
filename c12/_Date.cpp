@@ -3,7 +3,7 @@
 //
 
 #include "Date.h"
-int main(int argc, char* argv[])
+int _Date(int argc, char* argv[])
 {
     Date d1(2001, 1, 1);
     d1.Print();
