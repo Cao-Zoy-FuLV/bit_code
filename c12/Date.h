@@ -26,7 +26,7 @@ public:
     void Print() const;
 
     //类里定义默认是内敛inlined
-    int GetMonthDay(int year, int month)
+    int GetMonthDay(int year, int month) const
     {
         assert(month >0 && month <= 13);
         static int month_day[13] = {-1, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
