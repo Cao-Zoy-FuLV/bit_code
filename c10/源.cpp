@@ -94,7 +94,7 @@ struct MyStruct
 
 //c艹   一般操作符都是函数，函数是可以重载的
 //operator 重载(静多态)
-//函数名相同，参数列表不同〈类型，个数，顺序）
+//函数名相同，参数列表不同〈类型，个数，顺序）且同一个作用域；继承中变量名相同是隐藏
 //返值类型不能作为重载的标志
 //严格匹配隐式转化 double int float		int long double ambiguous
 //  extern "C"==>防止倾轧

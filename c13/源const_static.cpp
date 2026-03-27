@@ -62,7 +62,7 @@ public:
 //		static
 //全局变量 外延性 static 作用域,仅限于文件
 //局部变量 auto 生命周期=main  
-//存储位置：DATA 段（全局初始化区）——存放初始化的全局变量和静态变量 
+//存储位置：DATA 段（全局初始化区）——存放初始化的全局变量和 静态变量 
 //			或 BSS 段（全局未初始化区）存放未初始化的全局变量和静态变量。程序运行结束时自动释放
 //			的 RW 段
 //
@@ -94,7 +94,7 @@ public:
 	}
 	friend void dis1(_static& t); //函数〈全局，也可类的成员函数）可以作友元，称为友元函数。
 	friend void dis2::dis(_static& t);//声明友元函数
-	friend class dis3;//把B声明A的友元，就可以涌过A的变量访间A的private:数据成员。
+	friend class dis3;//把B声明A的友元，就可以涌过A的变量访间A的private:数据成员。 但友元关系不能被继承
 
 private:
 	int x;
