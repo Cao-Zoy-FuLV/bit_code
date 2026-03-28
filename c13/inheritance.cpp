@@ -10,7 +10,7 @@ public:
     Person(const char* name)
         : _name(name)
     {
-        std::cout << "Person()" << endl;
+        // std::cout << "Person()" << endl;
     }
 
     Person(const Person& p)
@@ -27,7 +27,9 @@ public:
         return *this;
     }
 
-    ~Person()
+    ///析构函数会变特殊处理成destructor()加virtual构成多态
+    /// 基类中析构函数建议设计成虚函数
+    virtual ~Person()
     {
         cout << "~Person()" << endl;
     }
@@ -71,14 +73,15 @@ public :
 
     //默认生成析构函数就够了，如果需要释放的资源才需要自己实现
     //子类和父类析构函数构成隐藏关系
-    //析构函数会变特殊处理成destructor（）
-    //规定：析构不需要显示调用父类的析构函数
-    //子类的析构函数调用完会用父类的析构函数 保证先子后父
-    ~Student()
+
+    ///规定：析构不需要显示调用父类的析构函数
+    ///子类的析构函数调用完会用父类的析构函数 保证先子后父
+    ///加virtual构成多态 基类加virtual就彳亍 基类不加则派生类调不到析构函数
+    virtual ~Student()
     {
         // Person::~Person();
-
-    //释放资源
+        std::cout << "~Student()" << endl;
+        //释放资源
     }
 
 protected:
@@ -88,10 +91,17 @@ protected:
 
 int main()
 {
-    Student s1("张三", 1, "北京");
-    Student s2(s1);
-    Student s3("李四", 2, "上海");
-    s3 = s1;
+    // Student s1("张三", 1, "北京");
+    // Student s2(s1);
+    // Student s3("李四", 2, "上海");
+    // s3 = s1;
+
+    Person* p = new Person("析构测试");
+    Student* s = new Student("张三", 1, "北京");
+
+    //实际上就是p->dstructor() 结合 operator delete
+    delete p;
+    delete s;
     return 0;
 }
 

@@ -43,12 +43,12 @@ int mainf()
 	return 0;
 }
 
-class A {
+class X {
 public:
 	void f() { cout << "A::f()" << endl; }
 };
 
-typedef  void(A::*PF)();
+typedef  void(X::*PF)();
 
 int main(int argc, char* argv[])
 {
@@ -56,9 +56,9 @@ int main(int argc, char* argv[])
 	PF pf =nullptr;
 
 	//C++规定成员函数必须加&才能取到函数指针
-	pf=&A::f;
+	pf=&X::f;
 
-	A aa;
+	X aa;
 	(aa.*pf)();
 	//   [ .* ] 运算符在函数回调中使用 ，实际少用
 }
