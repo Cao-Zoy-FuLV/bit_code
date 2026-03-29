@@ -52,7 +52,7 @@ int main1()
     return 0;
 }
 
-//以下程序输出什么？
+//以下程序输出什么？ 
 class A
 {
 public:
@@ -118,12 +118,15 @@ int main3()
     //x 抽象类 不能实例化出对象
     // x x1;
     y y1;
-    y1.func();
-
+    if (1)
+    {
+        y1.func();
+    }
     return 0;
 }
 
 int main(int argc, char* argv[])
 {
     main1();
+    cout << "y 实现的 x 的纯虚函数" << endl;
 }
