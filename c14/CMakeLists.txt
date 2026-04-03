@@ -1,7 +1,8 @@
+cmake_minimum_required(VERSION 4.2)
 project(c14)
 add_executable(c14
-        #main.cpp
+        RBTree.h
+        main.cpp
         #vector.h
-        #AVLTree.cpp
         #AVLTree.h
 )
