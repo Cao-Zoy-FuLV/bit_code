@@ -17,43 +17,179 @@ enum Colour
 };
 
 // 这里我们默认按key/value结构实现
-template <class K, class V> struct RBTreeNode
+template<class T>
+struct RBTreeNode
 {
-    // 这里更新控制平衡也要加入parent指针
-    pair <K, V> _kv;
-    RBTreeNode <K, V>* _left;
-    RBTreeNode <K, V>* _right;
-    RBTreeNode <K, V>* _parent;
+    T _data;
+    RBTreeNode <T>* _left;
+    RBTreeNode <T>* _right;
+    RBTreeNode <T>* _parent;
     Colour _col;
-    RBTreeNode( const pair <K, V>& kv )
-        : _kv(kv), _left(nullptr), _right(nullptr), _parent(nullptr) {}
+    RBTreeNode( const T& data )
+        : _data(data)
+        , _left(nullptr)
+        , _right(nullptr)
+        , _parent(nullptr) {}
 };
 
-template <class K, class V> class RBTree
+template<class T, class Ref, class Ptr>
+struct RBTreeIterator
 {
-    typedef RBTreeNode <K, V> Node;
+    typedef RBTreeNode <T> Node;
+    typedef RBTreeIterator <T, Ref, Ptr> Self;
+    Node* _node;
+    Node* _root;
+    RBTreeIterator( Node* node, Node* root )
+        : _node(node)
+        , _root(root) {}
+
+    ///关键代码1
+    Self& operator++()
+    {
+        if ( _node->_right )
+        {
+            // 右不为空，右子树最左结点就是中序第一个
+            Node* min = _node->_right;
+            while ( min->_left )
+            {
+                min = min->_left;
+            }
+            _node = min;
+        }
+        else
+        {
+            // 孩子是父亲左的祖先
+            Node* cur = _node;
+            Node* parent = cur->_parent;
+            while ( parent && cur == parent->_right )
+            {
+                cur = parent;
+                parent = cur->_parent;
+            }
+            _node = parent;
+        }
+        return *this;
+    }
+    ///关键代码2
+    Self& operator--()
+    {
+        if ( _node == nullptr ) // end()
+        {
+            // --end()，特殊处理，走到中序最后一个结点，整棵树的最右结点
+            Node* rightMost = _root;
+            while ( rightMost && rightMost->_right )
+            {
+                rightMost = rightMost->_right;
+            }
+            _node = rightMost;
+        }
+        else if ( _node->_left )
+        {
+            // 左子树不为空，中序左子树最后一个
+            Node* rightMost = _node->_left;
+            while ( rightMost->_right )
+            {
+                rightMost = rightMost->_right;
+            }
+            _node = rightMost;
+        }
+        else
+        {
+            // 孩子是父亲右的祖先
+            Node* cur = _node;
+            Node* parent = cur->_parent;
+            while ( parent && cur == parent->_left )
+            {
+                cur = parent;
+                parent = cur->_parent;
+            }
+            _node = parent;
+        }
+        return *this;
+    }
+    Ref operator*()
+    {
+        return _node->_data;
+    }
+    Ptr operator->()
+    {
+        return &_node->_data;
+    }
+    bool operator!=( const Self& s ) const
+    {
+        return _node != s._node;
+    }
+    bool operator==( const Self& s ) const
+    {
+        return _node == s._node;
+    }
+};
+
+template<class K, class T, class KeyOft>
+class RBTree
+{
+    typedef RBTreeNode <T> Node;
 
 public:
-    bool Insert( const pair <K, V>& kv )
+    RBTree() = default;
+    ~RBTree()
+    {
+        Destroy(_root);
+        _root = nullptr;
+    }
+    typedef RBTreeIterator <T, T&, T*> Iterator;
+    typedef RBTreeIterator <T, const T&, const T*> ConstIterator;
+
+    Iterator Begin()
+    {
+        Node* cur = _root;
+        while ( cur && cur->_left )
+        {
+            cur = cur->_left;
+        }
+        return Iterator(cur, _root);
+    }
+    Iterator End()
+    {
+        return Iterator(nullptr, _root);
+    }
+    ConstIterator Begin() const
+    {
+        Node* leftMost = _root;
+        while ( leftMost && leftMost->_left )
+        {
+            leftMost = leftMost->_left;
+        }
+        return ConstIterator(leftMost, _root);
+    }
+    ConstIterator End() const
+    {
+        return ConstIterator(nullptr, _root);
+    }
+
+
+    ////插入代码
+    bool Insert( const T& data )
     {
         if ( _root == nullptr )
         {
-            _root = new Node(kv);
+            _root = new Node(data);
             _root->_col = BLACK;
             return true;
         }
 
+        KeyOft kot;
         Node* parent = nullptr;
         Node* cur = _root;
 
         while ( cur )
         {
-            if ( cur->_kv.first < kv.first )
+            if ( kot(cur->_data) < kot(data) )
             {
                 parent = cur;
                 cur = cur->_right;
             }
-            else if ( cur->_kv.first > kv.first )
+            else if ( kot(cur->_data) > kot(data) )
             {
                 parent = cur;
                 cur = cur->_left;
@@ -63,9 +199,9 @@ public:
                 return false;
             }
         }
-        cur = new Node(kv);
+        cur = new Node(data);
         cur->_col = RED;
-        if ( parent->_kv.first < kv.first )
+        if ( kot(parent->_data) < kot(data) )
         {
             parent->_right = cur;
         }
@@ -170,7 +306,7 @@ public:
         _root->_col = BLACK;//暴力处理
         return true;
     }
-
+    
     // 右单旋
     void RotateR( Node* parent )
     {
@@ -242,12 +378,7 @@ public:
             subR->_parent = pParent;
         }
     }
-    // 和AVLR树一样
-    void InOrder()
-    {
-        InOrder(_root);
-        std::cout << endl;;
-    }
+
     int Height()
     {
         return Height_imp(_root);
@@ -277,7 +408,8 @@ public:
         return nullptr;
     }
 
-    bool IsBalance()
+    /*
+     bool IsBalance()
     {
         if ( _root == nullptr ) return true;
         if ( _root->_col == RED ) return false;
@@ -294,9 +426,16 @@ public:
         }
         return Check(_root, 0, refNum);
     }
-     
+    void InOrder()
+    {
+        InOrder(_root);
+        std::cout << endl;;
+    }
+*/
+
 private:
-    void InOrder( Node* root )
+    /*
+     void InOrder( Node* root )
     {
         if ( root )
         {
@@ -305,6 +444,7 @@ private:
             InOrder(root->_right);
         }
     }
+    */
     int Size_imp( Node* root )
     {
         if ( root == nullptr ) return 0;
@@ -318,6 +458,7 @@ private:
         int rightHeight = Height_imp(root->_right);
         return leftHeight > rightHeight ? leftHeight + 1 : rightHeight + 1;
     }
+    /*
     // 红黑树的验证
     bool Check( Node* root, int blackNum, const int refNum )
     {
@@ -343,6 +484,14 @@ private:
             blackNum++;
         }
         return Check(root->_left, blackNum, refNum) && Check(root->_right, blackNum, refNum);
+    }
+    */
+    void Destroy( Node* root )
+    {
+        if ( root == nullptr ) return;
+        Destroy(root->_left);
+        Destroy(root->_right);
+        delete root;
     }
 
 private:

@@ -3,12 +3,16 @@
 #include <sstream>
 #include<vector>
 #include<fstream>
+#include <set>
 
 #include "AVLTree.h"
 #include  "vector.h"
 #include "RBTree.h"
-using namespace std;
+#include  "Mymap.h"
+#include "Mysat.h"
 
+using namespace std;
+/*
 int main0()
 {
     ifstream input("a.txt");
@@ -33,6 +37,8 @@ int vector_main()
     return 0;
 }
 
+ */
+/*
 void TestRBTree1()
 {
     RBTree <int, int> t;
@@ -84,7 +90,6 @@ void TestRBTree2()
     size_t end1 = clock();
     cout << "Find:" << end1 - begin1 << endl;
 }
-
 void TestAVLTree1()
 {
     AVLTree <int, int> t;
@@ -200,9 +205,38 @@ void TestTree()
     cout << "RBTree Find:" << end5 - begin4 << endl;
     cout << "AVL Find:" << end1 - begin1 << endl;
 }
+*/
 
 int main( int argc, char* argv[] )
 {
-    TestTree();
-}
+    l::sat <int> s;
+    l::map <int, int> m;
+    s.insert(1);
+    m.insert({ 1, 1 });
+    s.insert(2);
+    m.insert({ 2, 2 });
+    s.insert(3);
+    m.insert({ 3, 3 });
+    s.insert(4);
+    m.insert({ 4, 4 });
+    s.insert(5);
+    m.insert({ 5, 5 });
 
+    l::sat <int>::iterator sit = s.begin();
+    for ( auto& e : s )
+    {
+        cout << e << " ";
+    }
+    cout << endl;;
+    l::map <int, int>::iterator mit = m.begin();
+    while ( mit != m.end() )
+    {
+        mit->second++;
+        // mit->first++;firstg 为const改不了
+        cout << mit->first << " ：" << mit->second << endl;
+        ++mit;
+    }
+    cout << endl;;
+
+    // system("pause");
+}

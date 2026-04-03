@@ -7,7 +7,8 @@
 #include <iostream>
 using namespace std;
 
-template <class K, class V> struct AVLTreeNode
+template<class K, class V>
+struct AVLTreeNode
 {
     // 需要parent指针，后续更新平衡因子可以看到
     pair <K, V> _kv;
@@ -16,10 +17,15 @@ template <class K, class V> struct AVLTreeNode
     AVLTreeNode <K, V>* _parent;
     int _bf; // balance factor（平衡因子）
     AVLTreeNode( const pair <K, V>& kv )
-        : _kv(kv), _left(nullptr), _right(nullptr), _parent(nullptr), _bf(0) {}
+        : _kv(kv)
+        , _left(nullptr)
+        , _right(nullptr)
+        , _parent(nullptr)
+        , _bf(0) {}
 };
 
-template <class K, class V> class AVLTree
+template<class K, class V>
+class AVLTree
 {
     typedef AVLTreeNode <K, V> Node;
 
@@ -280,12 +286,12 @@ public:
     {
         return Height_imp(_root);
     }
-    
+
     int Size()
     {
         return Size_imp(_root);
     }
-    
+
     Node* Find( const K& key )
     {
         Node* cur = _root;
@@ -313,7 +319,7 @@ private:
         if ( root )
         {
             InOrder(root->_left);
-            cout << root->_kv.first << " ：" << root->_kv.second << " 平衡因子" << root->_bf << endl;
+            cout << root->_kv.first << " :" << root->_kv.second << "平衡因子" << root->_bf << endl;
             InOrder(root->_right);
         }
     }
@@ -343,7 +349,7 @@ private:
         // pRoot平衡因子的绝对值超过1，则一定不是AVL树
         if ( abs(diff) >= 2 )
         {
-            cout << root->_kv.first << "高度差异常" << endl;
+            // cout << root->_kv.first << "高度差异常" << endl;
             return false;
         }
         if ( root->_bf != diff )

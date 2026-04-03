@@ -21,4 +21,4 @@ idea/
 *.so
 *.dll
 *.vs
-cmake-build-debug/
+cmake-build*/
