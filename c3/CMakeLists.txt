@@ -4,6 +4,6 @@ project(C1)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(C1
-        main1.cpp
+        Sleep.cpp
 )
 
