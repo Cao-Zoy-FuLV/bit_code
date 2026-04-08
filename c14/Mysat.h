@@ -22,7 +22,7 @@ namespace l
     public:
         //                                               const K 保证kye不能被修改
         typedef typename RBTree <K, const K, satKeyOfT>::Iterator iterator;
-        typedef typename RBTree <K, const K, satKeyOfT>::ConstIterator const_iterator;
+        typedef typename RBTree <K, const K, satKeyOfT>::Const_Iterator const_iterator;
 
         iterator begin()
         {
@@ -41,7 +41,7 @@ namespace l
             return _t.End();
         }
 
-        bool insert( const K& k )
+        pair <iterator, bool> insert( const K& k )
         {
             return _t.Insert(k);
         }

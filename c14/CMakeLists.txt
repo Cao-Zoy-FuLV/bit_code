@@ -5,11 +5,13 @@ project(c14)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(c14
+add_executable(c14 main.cpp
+        #[[ 
         RBTree.h
-        main.cpp
-        #vector.h
-        AVLTree.h
-        Mysat.h
-        Mymap.h
+         vector.h
+         AVLTree.h
+         Mysat.h
+         Mymap.h
+         ]]
+        HashTable.h
 )

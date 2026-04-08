@@ -22,7 +22,7 @@ namespace l
 
     public:
         typedef typename RBTree <K, pair <const K, V>, mapKeyOfT>::Iterator iterator;
-        typedef typename RBTree <K, pair <const K, V>, mapKeyOfT>::ConstIterator const_iterator;
+        typedef typename RBTree <K, pair <const K, V>, mapKeyOfT>::Const_Iterator const_iterator;
 
         iterator begin()
         {
@@ -41,9 +41,16 @@ namespace l
             return _t.End();
         }
 
-        bool insert( const pair <K, V>& kv )
+        pair <iterator, bool> insert( const pair <K, V>& kv )
         {
             return _t.Insert(kv);
+        }
+
+        V& operator[]( const K& k )
+        {
+            // insert 实现具有插入和修改的功能
+            pair <iterator, bool> ret = insert({ (k, V()) });
+            return ret.first->second;
         }
 
     private:

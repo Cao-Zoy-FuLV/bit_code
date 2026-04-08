@@ -138,7 +138,7 @@ public:
         _root = nullptr;
     }
     typedef RBTreeIterator <T, T&, T*> Iterator;
-    typedef RBTreeIterator <T, const T&, const T*> ConstIterator;
+    typedef RBTreeIterator <T, const T&, const T*> Const_Iterator;
 
     Iterator Begin()
     {
@@ -153,7 +153,7 @@ public:
     {
         return Iterator(nullptr, _root);
     }
-    ConstIterator Begin() const
+    Const_Iterator Begin() const
     {
         Node* leftMost = _root;
         while ( leftMost && leftMost->_left )
@@ -162,20 +162,21 @@ public:
         }
         return ConstIterator(leftMost, _root);
     }
-    ConstIterator End() const
+    Const_Iterator End() const
     {
         return ConstIterator(nullptr, _root);
     }
 
 
     ////插入代码
-    bool Insert( const T& data )
+    pair <Iterator, bool> Insert( const T& data )
     {
         if ( _root == nullptr )
         {
             _root = new Node(data);
             _root->_col = BLACK;
-            return true;
+            // return pair <Iterator, bool>(Iterator(_root,_root), true);
+            return { Iterator(_root, _root), true };
         }
 
         KeyOft kot;
@@ -196,10 +197,11 @@ public:
             }
             else
             {
-                return false;
+                return { Iterator(cur, _root), false };
             }
         }
         cur = new Node(data);
+        Node* newcur = cur;
         cur->_col = RED;
         if ( kot(parent->_data) < kot(data) )
         {
@@ -304,9 +306,9 @@ public:
         }
 
         _root->_col = BLACK;//暴力处理
-        return true;
+        return { Iterator(newcur, _root), true };
     }
-    
+
     // 右单旋
     void RotateR( Node* parent )
     {

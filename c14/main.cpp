@@ -6,12 +6,13 @@
 #include <set>
 
 #include "AVLTree.h"
+#include "HashTable.h"
 #include  "vector.h"
 #include "RBTree.h"
 #include  "Mymap.h"
 #include "Mysat.h"
 
-using namespace std;
+
 /*
 int main0()
 {
@@ -205,9 +206,10 @@ void TestTree()
     cout << "RBTree Find:" << end5 - begin4 << endl;
     cout << "AVL Find:" << end1 - begin1 << endl;
 }
-*/
 
-int main( int argc, char* argv[] )
+
+
+int l_sat_map( int argc, char* argv[] )
 {
     l::sat <int> s;
     l::map <int, int> m;
@@ -239,4 +241,42 @@ int main( int argc, char* argv[] )
     cout << endl;;
 
     // system("pause");
+    return 0;
 }
+*/
+/*
+int main()
+{
+    int a[] = { 19, 30, 5, 36, 13, 20, 21, 12 };
+    l::open_address::HashTable <int, int> ht1;
+    for ( auto e : a )
+    {
+        ht1.Insert({ e, e });
+    }
+    ht1.Insert({ 14, 14 });
+    if ( ht1.Find(30) )
+    {
+        cout << "ÕÒµ½30" << endl;
+    }
+    const char* c[] = { "aa", "bb", "cc", "dd" };
+    l::open_address::HashTable <string, string> ht2;
+    for ( auto e : c )
+    {
+        ht2.Insert({ e, e });
+    }
+    int a2[] = { 19, 30, 5, 36, 13, 20, 21, 12, 24, 96 };
+    l::hash_bucket::HashTable <int, int> hb1;
+    for ( auto e : a2 )
+    {
+        hb1.Insert({ e, e });
+    }
+    hb1.Erase(96);
+    if ( hb1.Find(96) )
+    {
+        cout << "ÕÒµ½96" << endl;
+    }
+
+    system("pause");
+    return 0;
+}
+*/
