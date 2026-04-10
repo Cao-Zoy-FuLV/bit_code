@@ -34,3 +34,5 @@ git rm -r --cached .
 git add .
 git commit -m "update .gitignore"  // windows使用的命令时，需要使用双引号
 ```
+
+111
