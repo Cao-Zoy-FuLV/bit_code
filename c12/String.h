@@ -33,7 +33,7 @@ namespace l
             return _str + _size;
         }
 
-        String(const char* p = "");
+        String( const char* p = "" );
         // {
         // _size = strlen(p);
         // //_capacity 不包含/0
@@ -41,7 +41,7 @@ namespace l
         // _str = new char[_capacity + 1];
         // strcpy(_str, p);
         // }
-        void swap(String& s)
+        void swap( String& s )
         {
             std::swap(_str, s._str);
             std::swap(_size, s._size);
@@ -72,7 +72,7 @@ namespace l
             引用返回是有问题的，这时的引用相当于一个野引用，类似一个野指针一样。传引用返回可以减少
             拷贝，但是一定要确保返回对象，在当前函数结束后还在，才能用引用返回
          */
-        String(const String& another);
+        String( const String& another );
 
         /*  			赋值运算符重载 ‘=’
             1. 用一个己有的给另外一个己有对象赋值，两个对象均己创建结束后发生的赋值行为
@@ -91,16 +91,16 @@ namespace l
          5. 如果一个类显示实现了析构并释放资源，那么他就需要显示写赋值运算符重载，否则就不需要。
          */
         // 原版： String& operator=(const String& another);
-        String& operator=( String another);
-        String operator+(const String& another);
-        char& operator[](int pos);
-        char at(int idx);
+        String& operator=( String another );
+        String operator+( const String& another );
+        char& operator[]( int pos );
+        char at( int idx );
 
         const char* char_s() const;
         size_t size() const;
         size_t capacity() const;
 
-        void reserve(size_t n);
+        void reserve( size_t n );
         void reservex2();
 
         void clear()
@@ -109,34 +109,34 @@ namespace l
             _size = 0;
         }
 
-        void push_back(char ch);
-        void append(const char* str);
-        String& operator+=(char str);
-        String& operator+=(const char* str);
+        void push_back( char ch );
+        void append( const char* str );
+        String& operator+=( char str );
+        String& operator+=( const char* str );
 
-        void insert(size_t pos, char ch);
-        void insert(size_t pos, const char* str);
-        void erase(size_t pos, size_t len = npos);
-        size_t find(char ch, size_t pos = 0) const;
-        size_t find(const char* str, size_t pos = 0) const;
-        String substr(size_t pos = 0, size_t len = npos) const;
+        void insert( size_t pos, char ch );
+        void insert( size_t pos, const char* str );
+        void erase( size_t pos, size_t len = npos );
+        size_t find( char ch, size_t pos = 0 ) const;
+        size_t find( const char* str, size_t pos = 0 ) const;
+        String substr( size_t pos = 0, size_t len = npos ) const;
 
         ~String();
 
     private:
-        char* _str = nullptr;
+        char* _str = new char('\0');
         size_t _size = 0;
         size_t _capacity = 0;
 
         static const size_t npos;
     };
 
-    bool operator>(const String& s1, const String& s2);
-    bool operator>=(const String& s1, const String& s2);
-    bool operator<(const String& s1, const String& s2);
-    bool operator<=(const String& s1, const String& s2);
-    bool operator==(const String& s1, const String& s2);
-    bool operator!=(const String& s1, const String& s2);
-    std::ostream& operator<<(std::ostream& out, const String& s);
-    std::istream& operator>>(std::istream& in, String& s);
+    bool operator>( const String& s1, const String& s2 );
+    bool operator>=( const String& s1, const String& s2 );
+    bool operator<( const String& s1, const String& s2 );
+    bool operator<=( const String& s1, const String& s2 );
+    bool operator==( const String& s1, const String& s2 );
+    bool operator!=( const String& s1, const String& s2 );
+    std::ostream& operator<<( std::ostream& out, const String& s );
+    std::istream& operator>>( std::istream& in, String& s );
 }

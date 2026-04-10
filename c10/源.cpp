@@ -82,7 +82,7 @@ int main5()
     //		填充
     int h = 0, m = 0, s = 0; //00:00:00
     cout << "时钟格式  " << setfill('0') << setw(2) << h << ":" << setfill('0') << setw(2) << m << ":" << setfill('0') <<
-        setw(2) << s << endl;
+            setw(2) << s << endl;
     return 0;
 }
 
@@ -98,7 +98,7 @@ struct MyStruct
 //返值类型不能作为重载的标志
 //严格匹配隐式转化 double int float		int long double ambiguous
 //  extern "C"==>防止倾轧
-MyStruct operator+(MyStruct a, MyStruct b)
+MyStruct operator+( MyStruct a, MyStruct b )
 {
     MyStruct c;
     c.x = a.x + b.x;
@@ -110,13 +110,13 @@ int main6()
 {
     int a = 0, b = 0;
     int c = a + b;
-    MyStruct aa = {1, 2}, bb = {2, 3};
+    MyStruct aa = { 1, 2 }, bb = { 2, 3 };
     MyStruct cc = aa + bb;
     cout << " cc= " << "< " << cc.x << "," << cc.y << " >" << endl;
     return 0;
 }
 
-void tian_qi_yu_bao(string w = "晴天") //默认为“晴天”
+void tian_qi_yu_bao( string w = "晴天" ) //默认为“晴天”
 {
     //求取时间
     time_t t = time(0); ///1970，0，0，0至今 (单位s)
@@ -132,7 +132,7 @@ int main7()
     return 0;
 }
 
-int volume(int l = 2, int w = 2, int h = 2) { return l * w * h; }
+int volume( int l = 2, int w = 2, int h = 2 ) { return l * w * h; }
 //				从右往左默认，中间不能跳跃
 //			实参的个数 + 默认参数的个数 >= 形参的个数
 // 1 个参数或是 2 个参数的形式，重载，默认参数都是可以实现的。
@@ -163,19 +163,48 @@ int main9()
     return 0;
 }
 
+//完美转发
+//完美转发forward本质是一个函数模板，他主要还是通过引用折叠的方式实现
+template<class _Ty>
+_Ty&& forward( remove_reference_t <_Ty>& _Arg ) noexcept
+{
+    // 将lvalue转发为lvalue或rvalue。
+    return static_cast <_Ty&&>(_Arg);
+}
+//万能引用
+template<class T>
+void print( T&& t )
+{
+    int a = 0;
+    T x = a;
+    x++;
+    //地址一样就是左值引用
+    cout << &a << endl;
+    cout << &x << endl << endl;
+}
+
 // 5. 引用的本质，是对指针的再次包装。
 // 5.1  可以定义指针的引用，但不能定义引用的引用
 // 5.2  可以定义指针的指针（二级指针），但不能定义引用的指针。
 // 5.3  可定义数组引用,但不能定义引用数组
+//  引用折叠
+//  只要有左值引用，右值引用会折叠为左值引用
 int main10()
 {
     int* p;
     int*& rp = p;
     //指针的引用
 
-    int a;
+    int a = 10;
     int& ra = a;
-    //int&& rra = ra;引用的引用
+    //右值引用不能直接引用左值
+    // int&& rra = ra; //引用的引用
+    int&& rr = 1;//类型为右值引用  int&&
+
+
+    print(a);//a 左值 实例化为void print（int& t）
+    print(std::move(a));//move(a) 右值 实例化为void print（int&& t）
+    print(1);//1 右值
 
     int& pR = *p;
     //指针☞引用(引用可以取地址)
@@ -185,10 +214,10 @@ int main10()
     //int& *ra = &ar;不能定义引用的指针
 
     int x = 0, y = 0, z = 0;
-    int (arr1)[] = {x, y, z};
-    int (&rarr)[3] = arr1;
+    int ( arr1 )[] = { x, y, z };
+    int ( &rarr )[3] = arr1;
     //数组引用
-    int* (arr2)[] = {&x, &y, &z};
+    int* ( arr2 )[] = { &x, &y, &z };
     //指针数组
     //int& rarr[] = {x,y,z}; 引用数组
     return 0;
@@ -213,25 +242,25 @@ int main11()
         int age;
         string name;
     };
-    Stu* pStu = new Stu{12, "Saniao"};
+    Stu* pStu = new Stu{ 12, "Saniao" };
     cout << pStu->age << "	" << pStu->name << endl;
     //申请指针数组空间
-    char** ppc = new char*[5]{NULL};
+    char** ppc = new char*[5]{ NULL };
     ppc[0] = new char[20];
     strcpy(ppc[0], "china1");
     ppc[1] = new char[20];
     strcpy(ppc[1], "china2");
     ppc[2] = new char[20];
     strcpy(ppc[2], "china3");
-    while (*ppc)
+    while ( *ppc )
     {
         cout << *ppc++ << endl;
     }
     //申请二维数组空间
-    int (*pa)[4] = new int[3][4]{{1}};
-    for (int i = 0; i < sizeof(int[3][4]) / sizeof(int[4]); i++)
+    int ( *pa )[4] = new int[3][4]{ { 1 } };
+    for ( int i = 0; i < sizeof(int[3][4]) / sizeof(int[4]); i++ )
     {
-        for (int j = 0; j < 4; j++)
+        for ( int j = 0; j < 4; j++ )
         {
             cout << pa[i][j] << " ";
         }
@@ -259,25 +288,25 @@ int main12()
 //	函数	空间换时间
 //优点：一段高度抽象的逻辑，不易产生歧义，使 text 段休积变小
 //缺点：函数调用的压栈与出栈的开销。
-int sqr1(int i) { return i * i; }
+int sqr1( int i ) { return i * i; }
 //内朕函数 (inline)	  空间换时间
 //优点：一段高度抽象的逻辑，不易产生歧义，会进行类型检查,还代码内嵌,避免函数调用的压栈与出栈的开销
 //缺点：只有当函数只有 10 行甚至更少时才会将其定为内联函数（inline function) 咕噜咕噜/10 华为/5
-inline int sqr2(int i) { return i * i; }
+inline int sqr2( int i ) { return i * i; }
 
 int main13()
 {
     int i = 0;
-    while (i < 5) { cout << SQR(i++) << endl; }
-    while (i < 5) { cout << sqr1(i) << endl; }
-    while (i < 5) { cout << sqr2(i) << endl; }
+    while ( i < 5 ) { cout << SQR(i++) << endl; }
+    while ( i < 5 ) { cout << sqr1(i) << endl; }
+    while ( i < 5 ) { cout << sqr2(i) << endl; }
     return 0;
 }
 
 //const 一定不可以改
 //const-cast 只能应用于指针引用
 
-void func1(int& v)
+void func1( int& v )
 {
     cout << v << endl;
 }
@@ -286,14 +315,14 @@ void func1(int& v)
 int main14()
 {
     const int a = 1;
-    func1(const_cast<int&>(a));
+    func1(const_cast <int&>(a));
     //引用
-    int& ra = const_cast<int&>(a);
+    int& ra = const_cast <int&>(a);
     ra = 2;
     cout << " a=" << a << "  ra=" << ra << endl;
     cout << " &a=" << &a << "  &ra=" << &ra << endl;
     //指针
-    int* p = const_cast<int*>(&a);
+    int* p = const_cast <int*>(&a);
     cout << " a=" << a << "  *p=" << *p << endl;
     cout << " &a=" << &a << "  &p=" << p << endl;
     //#define a 2 宏，在预处理的发生了替换
@@ -302,8 +331,8 @@ int main14()
     {
         int a;
     };
-    const A ad = {10};
-    A* pA = const_cast<A*>(&ad);
+    const A ad = { 10 };
+    A* pA = const_cast <A*>(&ad);
     pA->a = 2;
     cout << pA->a << endl;
     return 0;
@@ -376,12 +405,12 @@ int main15()
 
     //string 类型数组
     string sArr[4] = {
-        "",
-        "  1",
-        " 222",
-        "33333"
+    "",
+    "  1",
+    " 222",
+    "33333"
     };
-    for (int i = 0; i < 4; i++)
+    for ( int i = 0; i < 4; i++ )
     {
         cout << sArr[i] << endl;
     }
@@ -393,15 +422,15 @@ int main15()
 int main16() //C语言版
 {
     FILE* fp = fopen("test1.txt", "r+");
-    if (fp == NULL)return -1;
+    if ( fp == NULL )return -1;
     int lineCount = 0;
     char arr[999];
-    while (fgets(arr, 999, fp) != NULL)
+    while ( fgets(arr, 999, fp) != NULL )
         lineCount++;
     rewind(fp);
     char** p = (char**)malloc((lineCount + 1) * sizeof(char*));
     char** pt = p;
-    while (fgets(arr, 999, fp) != NULL)
+    while ( fgets(arr, 999, fp) != NULL )
     {
         int len = strlen(arr);
         *pt = (char*)malloc(len + 1);
@@ -409,7 +438,7 @@ int main16() //C语言版
         pt++;
     }
     *pt = NULL;
-    while (*p)printf("%s", *p++);
+    while ( *p )printf("%s", *p++);
     fclose(fp);
     return 0;
 }
@@ -420,16 +449,16 @@ int main16() //C语言版
 int main17()
 {
     FILE* fp = fopen("test1.txt", "r+");
-    if (fp == NULL)return -1;
+    if ( fp == NULL )return -1;
 
-    vector<string> vs;
+    vector <string> vs;
     //vector 就是个数组里面为 string 生成对象叫vs
     char arr[999];
-    while (fgets(arr, 999, fp) != NULL)
+    while ( fgets(arr, 999, fp) != NULL )
         //fgets 从输入流 fp 即输入缓冲区中读取999个字符( /0 算1字符)到字符数组arr中
         vs.push_back(arr);
     // push_back追加在后面
-    for (size_t i = 0; i < vs.size(); i++)
+    for ( size_t i = 0; i < vs.size(); i++ )
         cout << vs[i];
     fclose(fp);
     return 0;
@@ -447,14 +476,14 @@ int main17()
 而不是一堆数据结构和一些可以拨弄的二进制
 */
 
-int main()
+void main18()
 {
-    vector<int> v(10, 0);
-    vector<vector<int>> vv(10, v);
+    vector <int> v(10, 0);
+    vector <vector <int>> vv(10, v);
 
-    for (auto e : vv)
+    for ( auto e : vv )
     {
-        for (auto e1 : e)
+        for ( auto e1 : e )
         {
             static int count = 0;
             e1 = count++;
@@ -462,4 +491,9 @@ int main()
         }
         cout << endl;
     }
+}
+
+int main()
+{
+    main10();
 }
