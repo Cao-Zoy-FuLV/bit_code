@@ -12,6 +12,10 @@ add_executable(c14 main.cpp
          AVLTree.h
          Mysat.h
          Mymap.h
-         ]]
         HashTable.h
+        
+        ]]
+        ../c12/Date.h
+        ../c12/Date.cpp
+        shared_ptr.h
 )

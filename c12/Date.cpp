@@ -4,9 +4,9 @@
 
 #include "Date.h"
 
-bool Date::CheckDate()const
+bool Date::CheckDate() const
 {
-    if (_month < 1 || _month > 12 || _day < 1 || _day > GetMonthDay(_year, _month))
+    if ( _month < 1 || _month > 12 || _day < 1 || _day > GetMonthDay(_year, _month) )
     {
         return false;
     }
@@ -16,15 +16,15 @@ bool Date::CheckDate()const
     }
 }
 
-Date::Date(int year, int month, int day)
+Date::Date( int year, int month, int day )
 {
     _year = year;
     _month = month;
     _day = day;
 
-    if (!CheckDate())
+    if ( !CheckDate() )
     {
-        cout << "(ï¿½ï¿½ï¿½ìº¯ï¿½ï¿½)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" << endl;
+        cout << "(¹¹Ôìº¯Êý)ÊäÈëµÄÈÕÆÚÓÐÎó" << endl;
         Print();
     }
 }
@@ -35,19 +35,19 @@ void Date::Print() const
 }
 
 //d1<d2
-bool Date::operator<(const Date& d)
+bool Date::operator<( const Date& d )
 {
-    if (_year < d._year)
+    if ( _year < d._year )
     {
         return true;
     }
-    else if (_year == d._year)
+    else if ( _year == d._year )
     {
-        if (_month < d._month)
+        if ( _month < d._month )
         {
             return true;
         }
-        else if (_month == d._month)
+        else if ( _month == d._month )
         {
             return _day < d._day;
         }
@@ -55,44 +55,44 @@ bool Date::operator<(const Date& d)
     return false;
 }
 
-bool Date::operator==(const Date& d)
+bool Date::operator==( const Date& d )
 {
     return _year == d._year && _month == d._month && _day == d._day;
 }
 
-bool Date::operator<=(const Date& d)
+bool Date::operator<=( const Date& d )
 {
     return *this < d || *this == d;
 }
 
-bool Date::operator>(const Date& d)
+bool Date::operator>( const Date& d )
 {
     return !(*this <= d);
 }
 
-bool Date::operator>=(const Date& d)
+bool Date::operator>=( const Date& d )
 {
     return *this > d || *this == d;
 }
 
-bool Date::operator!=(const Date& d)
+bool Date::operator!=( const Date& d )
 {
     return !(*this == d);
 }
 
 
-Date& Date::operator+=(int day)
+Date& Date::operator+=( int day )
 {
-    if (day < 0)
+    if ( day < 0 )
     {
         return *this -= -day;
     }
     _day += day;
-    while (_day > GetMonthDay(_year, _month))
+    while ( _day > GetMonthDay(_year, _month) )
     {
         _day -= GetMonthDay(_year, _month);
         ++_month;
-        if (_month == 13)
+        if ( _month == 13 )
         {
             _year++;
             _month = 1;
@@ -101,7 +101,7 @@ Date& Date::operator+=(int day)
     return *this;
 }
 
-Date Date::operator+(int day)
+Date Date::operator+( int day )
 {
     Date temp = *this;
 
@@ -119,31 +119,31 @@ Date Date::operator+(int day)
     return temp;
 }
 
-//-ï¿½ï¿½ï¿½ï¿½-=ï¿½ï¿½ï¿½Ô¼ï¿½Êµï¿½ï¿½Ã»ï¿½Ð²ï¿½ï¿½ï¿½
-//-=ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½3ï¿½Î¿ï¿½ï¿½ï¿½
-Date& Date::operator-=(int day)
+//-¸´ÓÃ-=ºÍ×Ô¼ºÊµÏÖÃ»ÓÐ²îÒì
+//-=¸´ÓÃ-¶àÁË3´Î¿½±´
+Date& Date::operator-=( int day )
 {
-    if (day < 0)
+    if ( day < 0 )
     {
         return *this += -day;
     }
     _day -= day;
-    while (_day <= 0)
+    while ( _day <= 0 )
     {
         --_month;
-        if (_month == 0)
+        if ( _month == 0 )
         {
             _month = 12;
             --_year;
         }
         _day += GetMonthDay(_year, _month);
     }
-    //-=ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½3ï¿½Î¿ï¿½ï¿½ï¿½
+    //-=¸´ÓÃ-¶àÁË3´Î¿½±´
     /**this =*this - day;*/
     return *this;
 }
 
-Date Date::operator-(int day)
+Date Date::operator-( int day )
 {
     Date temp = *this;
     temp -= day;
@@ -161,21 +161,21 @@ Date Date::operator-(int day)
 }
 
 //d1++
-Date Date::operator++(int)
+Date Date::operator++( int )
 {
     Date temp = *this;
     *this += 1;
     return temp;
 }
 
-//++d1 ï¿½ï¿½Ò»ï¿½Î¿ï¿½ï¿½ï¿½
+//++d1 ÉÙÒ»´Î¿½±´
 Date Date::operator++()
 {
     *this += 1;
     return *this;
 }
 
-Date Date::operator--(int)
+Date Date::operator--( int )
 {
     Date temp = *this;
     temp -= 1;
@@ -188,24 +188,24 @@ Date Date::operator--()
     return *this;
 }
 
-int Date::operator+(const Date& d)
+int Date::operator+( const Date& d )
 {
     return *this - d;
 }
 
-int Date::operator-(const Date& d)
+int Date::operator-( const Date& d )
 {
     int flag = 1;
     Date max = *this;
     Date min = d;
-    if (*this < d)
+    if ( *this < d )
     {
         max = d;
         min = *this;
         flag = -1;
     }
     int n = 0;
-    while (max != min)
+    while ( max != min )
     {
         ++min;
         ++n;
@@ -213,26 +213,26 @@ int Date::operator-(const Date& d)
     return n * flag;
 }
 
-ostream& operator<<(ostream& os, const Date& d)
+ostream& operator<<( ostream& os, const Date& d )
 {
-    os << d._year << "ï¿½ï¿½" << d._month << "ï¿½ï¿½" << d._day << "ï¿½ï¿½" << endl;
+    os << d._year << "Äê" << d._month << "ÔÂ" << d._day << "ÈÕ" << endl;
     return os;
 }
 
-istream& operator>>(istream& is, Date& d)
+istream& operator>>( istream& is, Date& d )
 {
-    while (1)
+    while ( 1 )
     {
-        std::cout << "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:>";
+        std::cout << "ÇëÒÀ´ÎÊäÈëÄêÔÂÈÕ:>";
         is >> d._year >> d._month >> d._day;
-        if (!d.CheckDate())
+        if ( !d.CheckDate() )
         {
-            std::cout << "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
+            std::cout << "ÊäÈëµÄÈÕÆÚÓÐÎó";
             d.Print();
-            std::cout << "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:>";
+            std::cout << "ÇëÖØÐÂÊäÈë:>";
         }
         else
-        break;
+            break;
     }
 
     return is;

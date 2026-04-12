@@ -4,13 +4,15 @@
 #include<vector>
 #include<fstream>
 #include <set>
+#include  "vector.h"
 
+/*
 #include "AVLTree.h"
 #include "HashTable.h"
-#include  "vector.h"
 #include "RBTree.h"
 #include  "Mymap.h"
 #include "Mysat.h"
+*/
 
 
 /*
@@ -280,3 +282,18 @@ int main()
     return 0;
 }
 */
+
+
+#include "shared_ptr.h"
+#include "../c12/Date.h"
+int main( int argc, char* argv[] )
+{
+    l::shared_ptr <Date> sp1(new Date);
+    // 支持拷贝
+    l::shared_ptr <Date> sp2(sp1);
+    l::shared_ptr <Date> sp3 = sp2;
+    //支持定制删除器
+    l::shared_ptr <Date> sp4(new Date, [] ( Date* p ) { delete p; });
+    system("pause");
+}
+
