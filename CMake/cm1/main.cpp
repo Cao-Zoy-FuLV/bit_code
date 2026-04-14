@@ -2,10 +2,11 @@
 // Created by Administrator on 2026/4/12.
 //
 
+#include <cassert>
 #include <iostream>
+
 int main( int argc, char* argv[] )
 {
-    std::cout << 111;
-    unsigned long long a;
-    std::cin >> a;
+    assert(2==1);
+    std::cout << "Test OK" << std::endl;
 }
