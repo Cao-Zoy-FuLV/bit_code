@@ -96,7 +96,7 @@ Debug\main.exe
 
 ```
 
-## ctest 测试
+### ctest 测试
 
 -C <配置类型>—指定配置类型(Debug/Release)
 <br>--test-dir <构建目录路径>
@@ -105,3 +105,112 @@ Debug\main.exe
 #linux make test
 ctest --test-dir build   -C Debug
 ```
+
+### 安装
+
+Windows 下指定 Debug 配置 -v 显示详细信息 --prefix 指定安装目录
+
+```shell
+cmake --install build --config Debug   -v --prefix  .
+```
+
+### 打包
+
+执行步骤
+
+1. 设置临时安装目录
+2. 执行cmake_install.cmake
+3. 收集临时安装目录下的文件
+4. 执行打包，拷贝压缩包到构建目录下
+
+<br>-G <生成器> - 指定打包格式（ZIP, 7Z, TGZ, NSIS, DEB, RPM 等）
+<br>-C <配置> - 指定构建配置（Debug/Release）
+<br>-B <目录> - 指定输出目录
+<br>-V - 详细输出
+
+```shell
+cpack  -C Debug -B ../Debug/cpack
+#linux make package
+```
+
+### 脚本模式
+
+脚本模式：cmake -P <脚本文件>
+不会生成构建产物，也不会生成中间过程。
+
+```shell
+cmake -P 
+```
+
+### 常用命令
+
+调用外部命令
+
+    cmake -E <命令> <参数>
+
+查看帮助
+
+```shell 
+cmake --help
+```
+
+## 5：常用的cmake
+
+### [cmake_minimum_required](https://cmake.org/cmake/help/latest/command/cmake_minimum_required.html)
+
+顶层的CMakeLists.txt 文件中，用于指定 CMake 的最低版本要求。必须在project()之前调用。不推荐在函数中调用。
+
+    cmake_minimum_required(VERSION 3.18)
+    cmake_minimum_required(VERSION <min>[...<policy_max>] [FATAL_ERROR])
+
+VERSION 关键字，表示后面跟的是版本号
+<br>min表示最低版本号
+<br>policy_max表示最高版本号
+<br>不同 Linux 发行版（如 Ubuntu(3.22+)、CentOS(3.22+)、Fedora(3.28+) 等）的软件仓库中大部分都高与3.18
+
+### [project](https://cmake.org/cmake/help/latest/command/project.html)
+
+指定项目名字
+
+      project(<PROJECT-NAME>）
+
+完整形式
+
+    project(<PROJECT-NAME>
+            VERSION 项目版本号（如 1.0.0），
+            LANGUAGES <语言>（如 C、CXX、Fortran、ASM 等）
+            DESCRIPTION（可选） 项目描述信息（用于生成文档或包配置）。
+            HOMEPAGE_URL（可选） 项目主页地址。
+        )
+
+### [ include](https://cmake.org/cmake/help/latest/command/include.html)
+
+加载指定的脚本文件或者模块到当前CMakeLists执行上下文中并运行。
+
+    include(<file|module>[OPTIONAL] [RESULT_VARIABLE <var>] [NO_POLICY_SCOPE])
+
+打印当前正在执行的cmake 脚本的 全目录
+
+    message(STATUS "CMAKE_CURRENT_LIST_DIR:" ${CMAKE_CURRENT_LIST_DIR})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

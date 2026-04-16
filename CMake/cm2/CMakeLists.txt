@@ -2,13 +2,23 @@
 cmake_minimum_required(VERSION 3.18)
 
 # 定义项目名称
-project(sssb)
+project(sssb VERSION 1.2.3 LANGUAGES C CXX)
 
+# 设置 C++ 标准
+set(CMAKE_CXX_STANDARD 11)
 
 # 添加构建目标
-add_executable(CM1 main.cpp)
+add_executable(CM1 main.cpp
+        testIncuilude/t1.h)
+# 设置输出目录到上级
+#set_target_properties(目标名 PROPERTIES 属性名 属性值)
+#set_target_properties(CM1 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "../")
+
+#包含子目录cmake
+include(testIncuilude/t1.cmake)
 
 # 集成单元测试
+
 # 启用测试
 include(CTest)
 # 添加测试用例
